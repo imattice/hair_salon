@@ -1,4 +1,16 @@
 <?php
+
+//Hey Diane!
+//Just wanted to prepare you for a buggy site.  Here are some things I know are not working properly:
+//-> stylist update() does not seem to want to work.  The client update() works fine, but i spent about 30 minutes trying to hunt down the bug to no avail.  i decided to comment it out along with the test and produce what i could without that feature.
+//-> the rest of the bugs come from the routing, which i can't say i'm super confident with right now.  I have about 70% of the routes working, with the following I know for sure do not work properly:
+    //--> Client update - will route to the correct page, but the updates are not going into the database and changing the values.
+    //--> Stylist delete - "No route found for GET/stylists{id}/delete".  It looks correct to me, though.
+    //--> Client delete - states that I'm calling delete() on null, but there should be a client to delete. It seems that it cannot find the client_id for some reason.
+//Thanks for the help!  Hope you have a good weekend!
+
+
+
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/Client.php";
     require_once __DIR__."/../src/Stylist.php";
@@ -27,6 +39,13 @@
     $app->post('/stylists', function() use($app) {
         $stylist = new Stylist($_POST['stylist_name']);
         $stylist->save();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    //deletes one specific stylist
+    $app->delete("/stylists/{{stylist.getStylistId}}/delete", function($stylist_id) use ($app) {
+        $stylist = Stylist::find($stylist_id);
+        $stylist->delete();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
@@ -64,12 +83,28 @@
     $app->patch('/client/{client_id}', function($client_id) use ($app){
         $client = Client::find($client_id);
         $stylist = Stylist::find($_POST['stylist_id']);
-        var_dump($_POST);
+        //var_dump($_POST);
         foreach ($_POST as $key => $value) {
             if (!empty ($value)) {
                 $client->update($key, $value);
+                //var_dump($client);
             }
         }
+        return $app['twig']->render('stylists.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
+    //delete all clients for a specific stylist
+    $app->post('/delete_clients', function() use($app){
+        Client::deleteAll();
+        return $app['twig']->render('index.html.twig', array('clients'=> Client::getAll(), 'stylists' => Stylist::getAll()));
+    });
+
+    //deletes specific client
+    $app->delete('/client/{client_id}', function($client_id) use ($app){
+        $client = Client::find($client_id);
+        var_dump($client);
+        $stylist = Stylist::find($_POST['stylist_id']);
+        $client->delete();
         return $app['twig']->render('stylists.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
     });
 
