@@ -13,5 +13,26 @@
             $this->stylist_id = $stylist_id;
             $this->client_id = $client_id;
         }
+
+    //sets properties to assigned input types
+        function setClientName($new_client_name)
+        {
+            $this->client_name = (string) $new_client_name;
+        }
+
+        function setPhone($new_phone)
+        {
+            $this->phone = (string) $new_phone;
+        }
+
+        function getClientName()
+        {
+            return $this->client_name;
+        }
+
+        function getPhone()
+        {
+            return $this->phone;
+        }
     }
  ?>
