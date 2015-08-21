@@ -56,7 +56,7 @@
 
     //brings user to a page that allows a specific client to be edited
     $app->get('/client/{client_id}/edit', function($client_id) use ($app){
-        $client = Client::find($stylist_id);
+        $client = Client::find($client_id);
         return $app['twig']->render('client_edit.html.twig', array('clients'=>$client));
     });
 
