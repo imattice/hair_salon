@@ -44,5 +44,35 @@
         {
             return $this->client_id;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO t_clients (name, phone, stylist_id) VALUES ('{$this->getClientName()}', '{$this->getPhone()}', {$this->getStylistId()});");
+            $this->client_id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $db_clients = $GLOBALS['DB']->query("SELECT * FROM t_clients;");
+            //var_dump($db_clients);
+            $clients = array();
+            foreach($db_clients as $client) {
+                    $client_name = $client['name'];
+                    $phone = $client['phone'];
+                    $stylist_id = $client['stylist_id'];
+                    $client_id = $client['id'];
+                    $new_client = new Client($client_name, $phone, $stylist_id, $client_id);
+                    //var_dump($new_client);
+                    array_push($clients, $new_client);
+            }
+            //var_dump($clients);
+            return $clients;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM t_clients;");
+        }
+
     }
  ?>

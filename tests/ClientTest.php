@@ -77,18 +77,18 @@
         function test_getClientId()
         {
 
-        //Arrange
-        $client_name = "Ike";
-        $phone = "1234567890";
-        $stylist_id = 1;
-        $client_id = null;
-        $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+            //Arrange
+            $client_name = "Ike";
+            $phone = "1234567890";
+            $stylist_id = 1;
+            $client_id = null;
+            $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
 
-        //Act
-        $result = $test_client->getClientId();
+            //Act
+            $result = $test_client->getClientId();
 
-        //Assert
-        $this->assertEquals($client_id, $result);
+            //Assert
+            $this->assertEquals($client_id, $result);
         }
 
         function test_save()
@@ -123,14 +123,17 @@
 
             $client_name = "Ike";
             $phone = "1234567890";
-            $stylist_id = $test_stylist->getId();
+            $client_id = null;
+            $stylist_id = $test_stylist->getStylistId();
             $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
             $test_client->save();
+            //var_dump($test_client);
 
             $client_name2 = "Katri";
             $phone2 = "0987654321";
             $test_client2 = new Client($client_name2, $phone2, $stylist_id, $client_id);
             $test_client2->save();
+            //var_dump($test_client2);
 
             //Act
             $result = Client::getAll();
@@ -149,7 +152,8 @@
 
             $client_name = "Ike";
             $phone = "1234567890";
-            $stylist_id = $test_stylist->getId();
+            $stylist_id = $test_stylist->getStylistId();
+            $client_id = null;
             $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
             $test_client->save();
 
