@@ -43,6 +43,12 @@
         //     var_dump($this);
         // }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM t_stylists WHERE id = {$this->getStylistId()};");
+            $GLOBALS['DB']->exec("DELETE FROM t_clients WHERE client_id = {$this->getStylistId()};");
+        }
+
     //get all stylists function
         static function getAll()
         {
