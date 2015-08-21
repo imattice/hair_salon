@@ -244,10 +244,10 @@
             $test_client2->save();
 
             //Act
-            $result = Client::find($test_client->getId());
+            $result = Client::find($test_client->getClientId());
 
             //Assert
-            $this->assertEquals($test_client, $test_client2, $result);
+            $this->assertEquals($test_client, $result);
         }
 
     }
