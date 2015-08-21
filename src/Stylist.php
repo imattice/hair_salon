@@ -34,6 +34,15 @@
             $this->stylist_id = $GLOBALS['DB']->lastInsertId();
         }
 
+    //updates a specific stylist property
+        function update($new_name)
+        {
+            var_dump($new_name);
+            $GLOBALS['DB']->exec("UPDATE t_stylists SET name = '{$new_name}' WHERE id = {$this->getStylistId()};");
+            $this->setStylistName($new_name);
+            var_dump($this);
+        }
+
     //get all stylists function
         static function getAll()
         {
