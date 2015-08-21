@@ -170,6 +170,31 @@
             $this->assertEquals([], $result);
         }
 
+        function test_update()
+        {
+            //Arrange
+            $stylist_name = "Sue";
+            $stylist_id = null;
+            $test_stylist = new Stylist($stylist_name, $stylist_id);
+            $test_stylist->save();
+
+            $client_name = "Ike";
+            $phone = "1234567890";
+            $stylist_id = $test_stylist->getStylistId();
+            $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+            $test_client->save();
+
+            $colum_to_update = "name";
+            $new_information = "Michael";
+
+            //Act
+            $test_client->update($column_to_update, $new_information);
+
+            //Assert
+            $result = Client::getAll();
+            $this->assertEquals("Michael", $result[0]->getClientName());
+        }
+
     }
 
 
