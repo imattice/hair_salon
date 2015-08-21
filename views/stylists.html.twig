@@ -19,7 +19,7 @@
                             </ul>
 
                             <!-- this button redirects the user to a seperate edit page for this specific client -->
-                            <form action='/client/{{ client.getId }}/edit'>
+                            <form action='/client/{{ client.getClientId }}/edit'>
                                 <div class="form-group">
                                     <button type="submit" class='btn btn-primary'>Edit this client</button>
                                 </div>
@@ -37,7 +37,7 @@
             <form action='/client' method='post'>
                 <div class="form-group">
                     <!-- hidden input that carries the stylist id with the individual client.  User will not see or edit this property -->
-                    <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylists.getId }}'>
+                    <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylists.getStylistId }}'>
                     <label for='client_name'>Client Name</label>
                     <input id='client_name' name='client_name' type='text'>
                 </div>
@@ -51,7 +51,7 @@
             </form>
 
             <!-- Allows user to edit the current stylist properties -->
-            <form action='/stylists/{{ stylists.getId }}/edit'>
+            <form action='/stylists/{{ stylists.getStylistId }}/edit'>
                 <div class="form-group">
                     <button type="submit" class='btn btn-primary'>Edit this stylist</button>
                 </div>

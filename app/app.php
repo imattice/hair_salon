@@ -24,8 +24,8 @@
     });
 
     //creates a new stylist, saves it to the database, and displays it on the homepage
-    $app->post('/stylist', function() use($app) {
-        $stylist = new Stylist($_POST['name']);
+    $app->post('/stylists', function() use($app) {
+        $stylist = new Stylist($_POST['stylist_name']);
         $stylist->save();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
