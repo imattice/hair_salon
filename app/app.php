@@ -60,6 +60,19 @@
         return $app['twig']->render('client_edit.html.twig', array('clients'=>$client));
     });
 
+    //posts edited data to the database to update a property in the existing restaurant
+    $app->patch('/client/{client_id}', function($client_id) use ($app){
+        $client = Client::find($client_id);
+        $stylist = Stylist::find($_POST['stylist_id']);
+        var_dump($_POST);
+        foreach ($_POST as $key => $value) {
+            if (!empty ($value)) {
+                $client->update($key, $value);
+            }
+        }
+        return $app['twig']->render('stylists.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
 
     return $app;
 
