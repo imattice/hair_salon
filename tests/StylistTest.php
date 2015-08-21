@@ -108,10 +108,10 @@
             $test_stylist2->save();
 
             //Act
-            $result = Stylist::find($test_stylist->getId());
+            $result = Stylist::find($test_stylist->getStylistId());
 
             //Assert
-            $result->assertEquals($test_stylist, $result);
+            $this->assertEquals($test_stylist, $result);
         }
     }
 

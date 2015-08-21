@@ -49,6 +49,21 @@
 
         }
 
+    //finds a specific stylists
+        static function find($search_id)
+        {
+            $found_stylist = null;
+            $stylists = Stylist::getAll();
+            //goes through each stylist and checks if the input id matches the id of one of the stylists
+            foreach ($stylists as $stylist){
+                $stylist_id = $stylist->getStylistId();
+                if ($stylist_id == $search_id) {
+                    $found_stylist = $stylist;
+                }
+            }
+            return $found_stylist;
+        }
+
     //delete all stylists
         static function deleteAll()
         {
