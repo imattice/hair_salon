@@ -30,9 +30,16 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    //clear database of all stylists
     $app->post('/delete_stylists', function() use($app) {
-    Stylist::deleteAll();
-    return $app['twig']->render('index.html.twig', array('stylists'=>Stylist::getAll()));
+        Stylist::deleteAll();
+        return $app['twig']->render('index.html.twig', array('stylists'=>Stylist::getAll()));
+    });
+
+    //brings user to specific stylist page
+    $app->get("/stylists/{id}", function($id) use($app) {
+        $stylist = Stylist::find($id);
+        return $app['twig']->render('stylists.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
     });
 
 
