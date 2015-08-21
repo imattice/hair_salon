@@ -9,7 +9,7 @@
 
             <!-- checks to see if there are any clients to display -->
             {% if clients is not empty %}
-                <p>Here are {{stylist.getStylistName}}\'s current clients:</p>
+                <p>Here are {{stylists.getStylistName}}'s current clients:</p>
                 <ul>
                     <!-- if there are clients, this code will loop through the array of existing clients and pull out the properties and reconstruct the client -->
                     {% for client in clients %}
@@ -34,7 +34,7 @@
 
             <!-- Form for adding new clients within the current stylist -->
             <h4>Add a Client</h4>
-            <form action='/client' method='post'>
+            <form action='/clients' method='post'>
                 <div class="form-group">
                     <!-- hidden input that carries the stylist id with the individual client.  User will not see or edit this property -->
                     <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylists.getStylistId }}'>

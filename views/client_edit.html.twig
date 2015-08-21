@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+        <title>Edit this client</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Update the {{ clients.getClientName }} category </h1>
+
+            <form action="/client/{{ clients.getId }}" method="post">
+
+                <input name="_method" type="hidden" value="patch">
+                <input id='stylist_id' name='stylist_id' type='hidden' value='{{ clients.getStylistId() }}'>
+                <div class="form-group">
+                    <label for="client_name">Update client name:</label>
+                    <input id="client_name" name="client_name" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Update client phone number:</label>
+                    <input id="phone" name="phone" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address">Update client address:</label>
+                    <input id="address" name="address" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="website">Update client website:</label>
+                    <input id="website" name="website" type="text">
+                </div>
+              <button type="submit" class="btn btn-success">Update!</button>
+            </form>
+
+            <form action="/client/{{ clients.getId }}" method="post">
+                <input name="_method" type="hidden" value="delete">
+                <!-- needs id to tell the function what to delete.  -->
+                <input id='stylist_id' name='stylist_id' type='hidden' value='{{ clients.getStylistId() }}'>
+                <button type="submit" class="btn btn-danger">Delete this client</button>
+            </form>
+        </div>
+    </body>
+</html>

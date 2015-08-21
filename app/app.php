@@ -42,6 +42,24 @@
         return $app['twig']->render('stylists.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
     });
 
+    //creates new clients and displays them on the same page
+    $app->post('/clients', function() use($app) {
+        //takes the input values and builds a new client and saves client to database
+        $client_name = $_POST['client_name'];
+        $phone = $_POST['phone'];
+        $stylist_id = $_POST['stylist_id'];
+        $client = new Client($client_name, $phone, $stylist_id);
+        $client->save();
+        $stylist = Stylist::find($stylist_id);
+        return $app['twig']->render('stylists.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
+    //brings user to a page that allows a specific client to be edited
+    $app->get('/client/{client_id}/edit', function($client_id) use ($app){
+        $client = Client::find($stylist_id);
+        return $app['twig']->render('client_edit.html.twig', array('clients'=>$client));
+    });
+
 
     return $app;
 
