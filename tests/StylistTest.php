@@ -114,7 +114,7 @@
             $this->assertEquals($test_stylist, $result);
         }
 
-        // function testUpdate()
+        // function test_update()
         // {
         //     //Arrange
         //     $stylist_name = "Mike";
@@ -131,7 +131,7 @@
         //     $this->assertEquals("Michael", $test_stylist->getStylistName());
         // }
 
-        function testDelete()
+        function test_delete()
         {
             //Arrange
             $stylist_name = "Sue";

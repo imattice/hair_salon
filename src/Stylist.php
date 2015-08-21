@@ -34,6 +34,7 @@
             $this->stylist_id = $GLOBALS['DB']->lastInsertId();
         }
 
+
     //updates a specific stylist property
         // function update($new_name)
         // {
