@@ -32,21 +32,21 @@
         }
 
         function test_getPhone()
-            {
+        {
 
-            //Arrange
-            $client_name = "Ike";
-            $phone = "1234567890";
-            $stylist_id = 1;
-            $client_id = null;
-            $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+        //Arrange
+        $client_name = "Ike";
+        $phone = "1234567890";
+        $stylist_id = 1;
+        $client_id = null;
+        $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
 
-            //Act
-            $result = $test_client->getPhone();
+        //Act
+        $result = $test_client->getPhone();
 
-            //Assert
-            $this->assertEquals($phone, $result);
-            }
+        //Assert
+        $this->assertEquals($phone, $result);
+        }
 
         function getStylistId()
         {
@@ -67,6 +67,23 @@
 
             //Assert
             $this->assertEquals(true, is_numeric($result));
+        }
+
+        function test_getClientId()
+        {
+
+        //Arrange
+        $client_name = "Ike";
+        $phone = "1234567890";
+        $stylist_id = 1;
+        $client_id = null;
+        $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+
+        //Act
+        $result = $test_client->getClientId();
+
+        //Assert
+        $this->assertEquals($client_id, $result);
         }
 
 

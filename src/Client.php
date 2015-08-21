@@ -34,5 +34,15 @@
         {
             return $this->phone;
         }
+
+        function getStylistId()
+        {
+            return $this->stylist_id;
+        }
+
+        function getClientId()
+        {
+            return $this->client_id;
+        }
     }
  ?>
