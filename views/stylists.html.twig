@@ -5,15 +5,15 @@
     </head>
     <body>
         <div class="container">
-            <h1>{{ stylist.getName }}</h1>
+            <h1>{{ stylists.getStylistName }}</h1>
 
             <!-- checks to see if there are any clients to display -->
             {% if clients is not empty %}
-                <p>Here are {{stylist.getName}}\'s current clients:</p>
+                <p>Here are {{stylist.getStylistName}}\'s current clients:</p>
                 <ul>
                     <!-- if there are clients, this code will loop through the array of existing clients and pull out the properties and reconstruct the client -->
                     {% for client in clients %}
-                        <li><strong>{{ client.getclientName }}</strong></li>
+                        <li><strong>{{ client.getClientName }}</strong></li>
                             <ul>
                                 <li>{{ client.getPhone }}</li>
                             </ul>
