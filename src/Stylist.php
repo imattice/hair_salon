@@ -19,6 +19,10 @@
         {
             return $this->stylist_name;
         }
-    }
 
+        function getStylistId()
+        {
+            return $this->stylist_id;
+        }
+    }
  ?>
