@@ -1,7 +1,7 @@
 <?php
     class Stylist
     {
-        private $name;
+        private $stylist_name;
         private $id;
     }
 
