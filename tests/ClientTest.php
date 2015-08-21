@@ -32,22 +32,42 @@
         }
 
         function test_getPhone()
+            {
+
+            //Arrange
+            $client_name = "Ike";
+            $phone = "1234567890";
+            $stylist_id = 1;
+            $client_id = null;
+            $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+
+            //Act
+            $result = $test_client->getPhone();
+
+            //Assert
+            $this->assertEquals($phone, $result);
+            }
+
+        function getStylistId()
         {
+            //Arrange
+            $stylist_name = "Sue";
+            $stylist_id = null;
+            $test_stylist = new Stylist($stylist_name, $stylist_id);
+            $test_stylist->save();
 
-        //Arrange
-        $client_name = "Ike";
-        $phone = "1234567890";
-        $stylist_id = 1;
-        $client_id = null;
-        $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+            $client_name = "Ike";
+            $phone = "1234567890";
+            $stylist_id = 1;
+            $client_id = null;
+            $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
 
-        //Act
-        $result = $test_client->getPhone();
+            //Act
+            $result = $test_client->getStylistId();
 
-        //Assert
-        $this->assertEquals($phone, $result);
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
         }
-
 
 
     }
