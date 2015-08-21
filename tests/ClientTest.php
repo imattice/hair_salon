@@ -181,10 +181,11 @@
             $client_name = "Ike";
             $phone = "1234567890";
             $stylist_id = $test_stylist->getStylistId();
+            $client_id = null;
             $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
             $test_client->save();
 
-            $colum_to_update = "name";
+            $column_to_update = "name";
             $new_information = "Michael";
 
             //Act
@@ -194,6 +195,34 @@
             $result = Client::getAll();
             $this->assertEquals("Michael", $result[0]->getClientName());
         }
+
+        function test_delete()
+        {
+            //Arrange
+            $stylist_name = "Sue";
+            $stylist_id = null;
+            $test_stylist = new Stylist($stylist_name, $stylist_id);
+            $test_stylist->save();
+
+            $client_name = "Ike";
+            $phone = "1234567890";
+            $client_id = null;
+            $stylist_id = $test_stylist->getStylistId();
+            $test_client = new Client($client_name, $phone, $stylist_id, $client_id);
+            $test_client->save();
+
+            $client_name2 = "Katri";
+            $phone2 = "0987654321";
+            $test_client2 = new Client($client_name2, $phone2, $stylist_id, $client_id);
+            $test_client2->save();
+
+            //Act
+            $test_client->delete();
+
+            //Assert
+            $this->assertEquals([$test_client2], Client::getAll());
+        }
+
 
     }
 

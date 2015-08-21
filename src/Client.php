@@ -51,6 +51,11 @@
             $this->client_id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($column_to_update, $new_information)
+        {
+            $GLOBALS['DB']->exec("UPDATE t_clients SET {$column_to_update} = '{$new_information}' WHERE id = {$this->getClientId()};");
+        }
+
         static function getAll()
         {
             $db_clients = $GLOBALS['DB']->query("SELECT * FROM t_clients;");
