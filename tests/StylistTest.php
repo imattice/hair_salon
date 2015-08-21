@@ -18,7 +18,7 @@
 //clears test database at the beginning of each test run
         protected function tearDown()
         {
-            Stylist::deleteAll()
+            Stylist::deleteAll();
         }
 
         function test_getStylistName()
@@ -96,6 +96,8 @@
             //Assert
             $this->assertEquals([], $result);
         }
+
+
     }
 
 ?>
